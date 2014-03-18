@@ -6,21 +6,47 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="btnCont" onDragDetected="#btCont" prefHeight="704.0" prefWidth="1002.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane fx:id="btnCont" onDragDetected="#btCont"
+	prefHeight="704.0" prefWidth="1002.0" xmlns="http://javafx.com/javafx/8"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
 	<children>
-		<ImageView fx:id="imgView" fitHeight="519.0" fitWidth="528.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-		<Button fx:id="btnLoadImage" defaultButton="true" layoutX="14.0" layoutY="665.0" mnemonicParsing="false" onAction="#btnLoad" text="Load Image" />
-		<Button fx:id="btnBlur" disable="true" layoutX="863.0" layoutY="665.0" mnemonicParsing="false" onAction="#btBlur" prefHeight="25.0" prefWidth="118.0" text="Blur" />
-		<Button fx:id="btnEdgeDet" disable="true" layoutX="863.0" layoutY="633.0" mnemonicParsing="false" onAction="#btEdgeDet" prefHeight="25.0" prefWidth="118.0" text="Edge Detection" />
-		<Button fx:id="btnSharpen" disable="true" layoutX="863.0" layoutY="601.0" mnemonicParsing="false" onAction="#btSharpen" prefHeight="25.0" prefWidth="118.0" text="Sharpen" />
-		<Button fx:id="btnEmboss" disable="true" layoutX="863.0" layoutY="569.0" mnemonicParsing="false" onAction="#btEmboss" prefHeight="25.0" prefWidth="118.0" text="Emboss" />
-		<Button fx:id="btnGauss" disable="true" layoutX="863.0" layoutY="537.0" mnemonicParsing="false" onAction="#btGauss" text="Gaussian Smothing" />
-		<Button fx:id="btnApply" disable="true" layoutX="904.0" layoutY="352.0" mnemonicParsing="false" onAction="#btApply" text="Apply Filter" />
-		<Button fx:id="btnInver" layoutX="550.0" layoutY="28.0" mnemonicParsing="false" onAction="#btInver" text="inversion" />
-		<Button fx:id="btnBright" layoutX="550.0" layoutY="61.0" mnemonicParsing="false" onAction="#btBright" text="brightness" />
-		<Button fx:id="btnCont" layoutX="550.0" layoutY="94.0" mnemonicParsing="false" onAction="#btCont" text="contrast" />
-		<Button fx:id="btnClr" layoutX="815.0" layoutY="352.0" mnemonicParsing="false" onAction="#btClr" prefHeight="25.0" prefWidth="62.0" text="Clear" />
-		<Canvas fx:id="canv" height="256.0" layoutX="654.0" layoutY="19.0" onMousePressed="#mPressed" width="256.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0" />
-		<Button fx:id="btnGamma" layoutX="560.1875" layoutY="248.5" mnemonicParsing="false" onAction="#btGamma" text="gamma" /><TextField fx:id="txtField" layoutX="560.0" layoutY="281.0" prefHeight="25.0" prefWidth="56.0" text="1" />
+		<ImageView fx:id="imgView" fitHeight="519.0" fitWidth="528.0"
+			layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+		<Button fx:id="btnLoadImage" defaultButton="true" layoutX="14.0"
+			layoutY="665.0" mnemonicParsing="false" onAction="#btnLoad" text="Load Image" />
+		<Button fx:id="btnBlur" disable="true" layoutX="863.0" layoutY="665.0"
+			mnemonicParsing="false" onAction="#btBlur" prefHeight="25.0"
+			prefWidth="118.0" text="Blur" />
+		<Button fx:id="btnEdgeDet" disable="true" layoutX="863.0"
+			layoutY="633.0" mnemonicParsing="false" onAction="#btEdgeDet"
+			prefHeight="25.0" prefWidth="118.0" text="Edge Detection" />
+		<Button fx:id="btnSharpen" disable="true" layoutX="863.0"
+			layoutY="601.0" mnemonicParsing="false" onAction="#btSharpen"
+			prefHeight="25.0" prefWidth="118.0" text="Sharpen" />
+		<Button fx:id="btnEmboss" disable="true" layoutX="863.0"
+			layoutY="569.0" mnemonicParsing="false" onAction="#btEmboss"
+			prefHeight="25.0" prefWidth="118.0" text="Emboss" />
+		<Button fx:id="btnGauss" disable="true" layoutX="863.0"
+			layoutY="537.0" mnemonicParsing="false" onAction="#btGauss" text="Gaussian Smothing" />
+		<Button fx:id="btnApply" disable="true" layoutX="904.0"
+			layoutY="352.0" mnemonicParsing="false" onAction="#btApply" text="Apply Filter" />
+		<Button fx:id="btnInver" layoutX="550.0" layoutY="28.0"
+			mnemonicParsing="false" onAction="#btInver" text="inversion" />
+		<Button fx:id="btnBright" layoutX="550.0" layoutY="61.0"
+			mnemonicParsing="false" onAction="#btBright" text="brightness" />
+		<Button fx:id="btnCont" layoutX="550.0" layoutY="94.0"
+			mnemonicParsing="false" onAction="#btCont" text="contrast" />
+		<Button fx:id="btnClr" layoutX="815.0" layoutY="352.0"
+			mnemonicParsing="false" onAction="#btClr" prefHeight="25.0"
+			prefWidth="62.0" text="Clear" />
+		<Canvas fx:id="canv" height="256.0" layoutX="654.0" layoutY="19.0"
+			onMousePressed="#mPressed" width="256.0" AnchorPane.rightAnchor="25.0"
+			AnchorPane.topAnchor="25.0" />
+		<Button fx:id="btnGamma" layoutX="560.1875" layoutY="248.5"
+			mnemonicParsing="false" onAction="#btGamma" text="gamma" />
+		<TextField fx:id="txtField" layoutX="560.0" layoutY="281.0"
+			prefHeight="25.0" prefWidth="56.0" text="1" />
+		<Button fx:id="btnDithering" layoutX="562.375" layoutY="318.5"
+			mnemonicParsing="false" onAction="#btDithering" text="Dithering" />
 	</children>
 </AnchorPane>

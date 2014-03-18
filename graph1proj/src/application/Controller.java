@@ -52,7 +52,8 @@ public class Controller {
 	private Canvas canv;
 	@FXML
 	private Button btnApply;
-
+	@FXML
+	private Button btnDithering;
 	List<Point> listPoint = new ArrayList<Point>();
 
 	int[] fun = new int[256];
@@ -116,6 +117,14 @@ public class Controller {
 		int factor = 8;
 		int offset = 0;
 		applyFilter(kernel, factor, offset);
+	}
+	@FXML
+	private void btDithering() {
+		Image src = imgView.getImage();
+		BufferedImage img = ImageFilters.ditherImage(javafx.embed.swing.SwingFXUtils.fromFXImage(src, null));
+		Image image = SwingFXUtils.toFXImage(img, null);
+		imgView.setImage(image);
+	
 	}
 
 	@FXML
