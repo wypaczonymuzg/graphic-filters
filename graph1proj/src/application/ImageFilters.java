@@ -103,7 +103,7 @@ public class ImageFilters {
 	//git push -u origin master
 	
 	public static BufferedImage processImageFunGamma(BufferedImage image,double gamma) {
-		int imageWidth = image.getWidth(null);
+		int imageWidth  = image.getWidth(null);
 		int imageHeight = image.getHeight(null);
 		int curPixel;
 		int idx;
