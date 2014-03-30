@@ -70,19 +70,19 @@ public class ImageFilters {
 				B = ((curPixel >> 0) & 0x000000FF);
 
 				// A=function[A];
-				if(R<96){
+				if(R<128){
 					R=0;
 				}
 				else{
 					R=255;
 				}
-				if(B<96){
+				if(B<128){
 					B=0;
 				}
 				else{
 					B=255;
 				}
-				if(G<96){
+				if(G<128){
 					G=0;
 				}
 				else{
