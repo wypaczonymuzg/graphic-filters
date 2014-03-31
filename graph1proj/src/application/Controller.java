@@ -34,6 +34,7 @@ public class Controller {
 					.getX() ? 0 : 1));
 		}
 	}
+
 	@FXML
 	private TextField txtField;
 	@FXML
@@ -54,9 +55,22 @@ public class Controller {
 	private Button btnApply;
 	@FXML
 	private Button btnDithering;
+	@FXML
+	private Button btnRanDithering;
+	@FXML
+	private Button btnOctColor;
+	@FXML
+	private Button btnReload;
+
 	List<Point> listPoint = new ArrayList<Point>();
 
 	int[] fun = new int[256];
+	private Image img;
+
+	@FXML
+	private void btReload() {
+		imgView.setImage(img);
+	}
 
 	@FXML
 	private void btnLoad(ActionEvent e) {
@@ -67,6 +81,7 @@ public class Controller {
 		File file = fileChooser.showOpenDialog(null);
 		if (file != null) {
 			Image image = new Image("file:" + file.getPath());
+			img = image;
 			imgView.setImage(image);
 			enableButtons();
 		}
@@ -118,13 +133,32 @@ public class Controller {
 		int offset = 0;
 		applyFilter(kernel, factor, offset);
 	}
+
 	@FXML
 	private void btDithering() {
 		Image src = imgView.getImage();
-		BufferedImage img = ImageFilters.ditherImage(javafx.embed.swing.SwingFXUtils.fromFXImage(src, null));
+		BufferedImage img = Dither
+				.ditherImage(javafx.embed.swing.SwingFXUtils.fromFXImage(src,
+						null));
 		Image image = SwingFXUtils.toFXImage(img, null);
 		imgView.setImage(image);
-	
+
+	}
+
+	@FXML
+	private void btRanDithering() {
+		Image src = imgView.getImage();
+		BufferedImage img = Dither
+				.ranDitherImage(javafx.embed.swing.SwingFXUtils.fromFXImage(src,
+						null));
+		Image image = SwingFXUtils.toFXImage(img, null);
+		imgView.setImage(image);
+
+	}
+
+	@FXML
+	private void btOctColor() {
+
 	}
 
 	@FXML
@@ -132,7 +166,7 @@ public class Controller {
 		clearCanvas();
 		listPoint.clear();
 		zeroFun();
-		
+
 		final GraphicsContext graphicsContext = canv.getGraphicsContext2D();
 		graphicsContext.setFill(Color.GREEN);
 		graphicsContext.setStroke(Color.GREEN);
@@ -140,8 +174,8 @@ public class Controller {
 		clearCanvas();
 		listPoint.clear();
 		listPoint.add(new Point(0, 255));
-		listPoint.add(new Point(255,0));
-		
+		listPoint.add(new Point(255, 0));
+
 		sortList();
 		clearCanvas();
 		drawLine();
@@ -153,21 +187,21 @@ public class Controller {
 		clearCanvas();
 		listPoint.clear();
 		zeroFun();
-		
+
 		final GraphicsContext graphicsContext = canv.getGraphicsContext2D();
 		graphicsContext.setFill(Color.GREEN);
 		graphicsContext.setStroke(Color.GREEN);
 		graphicsContext.setLineWidth(2);
-		
+
 		listPoint.add(new Point(0, 0));
 		listPoint.add(new Point(40, 0));
-		listPoint.add(new Point(255,215));
-		
+		listPoint.add(new Point(255, 215));
+
 		sortList();
 		clearCanvas();
 		drawLine();
 		calculateFun();
-		
+
 	}
 
 	@FXML
@@ -175,34 +209,36 @@ public class Controller {
 		clearCanvas();
 		listPoint.clear();
 		zeroFun();
-		
+
 		final GraphicsContext graphicsContext = canv.getGraphicsContext2D();
 		graphicsContext.setFill(Color.GREEN);
 		graphicsContext.setStroke(Color.GREEN);
 		graphicsContext.setLineWidth(2);
-	
+
 		listPoint.add(new Point(40, 0));
-		listPoint.add(new Point(215,255));
-		listPoint.add(new Point(255,255));
-		
+		listPoint.add(new Point(215, 255));
+		listPoint.add(new Point(255, 255));
+
 		sortList();
 		clearCanvas();
 		drawLine();
 		calculateFun();
-		
+
 	}
 
 	@FXML
 	private void btApply() {
 		applyFilterFun();
 	}
+
 	private void applyFilterFun() {
 		Image src = imgView.getImage();
 		BufferedImage img = ImageFilters.processImageFun(
-				javafx.embed.swing.SwingFXUtils.fromFXImage(src, null),fun);
+				javafx.embed.swing.SwingFXUtils.fromFXImage(src, null), fun);
 		Image image = SwingFXUtils.toFXImage(img, null);
 		imgView.setImage(image);
 	}
+
 	@FXML
 	private void mPressed() {
 		final GraphicsContext graphicsContext = canv.getGraphicsContext2D();
@@ -227,13 +263,14 @@ public class Controller {
 		drawLine();
 		calculateFun();
 	}
+
 	@FXML
 	private void btGamma() {
 		Image src = imgView.getImage();
 		String gam = txtField.getText();
 		float gamma = Float.parseFloat(gam);
 		BufferedImage img = ImageFilters.processImageFunGamma(
-				javafx.embed.swing.SwingFXUtils.fromFXImage(src, null),gamma);
+				javafx.embed.swing.SwingFXUtils.fromFXImage(src, null), gamma);
 		Image image = SwingFXUtils.toFXImage(img, null);
 		imgView.setImage(image);
 	}
@@ -243,7 +280,8 @@ public class Controller {
 		clearCanvas();
 		listPoint.clear();
 	}
-	private void zeroFun(){
+
+	private void zeroFun() {
 		for (int x = 0; x < 256; x++) {
 			fun[x] = 0;
 		}
@@ -253,10 +291,10 @@ public class Controller {
 		if (listPoint.size() >= 2) {
 			int a, b;
 			int x1, x2, y1, y2;
-			if(listPoint.size()<1)
-			for (int x = 0; x < 256; x++) {
-				fun[x] = 0;
-			}
+			if (listPoint.size() < 1)
+				for (int x = 0; x < 256; x++) {
+					fun[x] = 0;
+				}
 			for (int i = 0; i < listPoint.size() - 1; i++) {
 				if (listPoint.get(i).getX() != listPoint.get(i + 1).getX()
 						&& listPoint.get(i).getY() != listPoint.get(i + 1)
@@ -317,6 +355,7 @@ public class Controller {
 		btnEmboss.disableProperty().set(false);
 		btnGauss.disableProperty().set(false);
 		btnApply.disableProperty().set(false);
+		btnReload.disableProperty().set(false);
 	}
 
 	private void applyFilter(float[][] kernel, int fac, int offset) {
