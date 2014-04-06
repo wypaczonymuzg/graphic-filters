@@ -38,6 +38,8 @@ public class Controller {
 	@FXML
 	private TextField txtField;
 	@FXML
+	private TextField txtRanDith;
+	@FXML
 	private ImageView imgView;
 	@FXML
 	private Button btnBlur;
@@ -148,9 +150,10 @@ public class Controller {
 	@FXML
 	private void btRanDithering() {
 		Image src = imgView.getImage();
+		String k=txtRanDith.getText();
 		BufferedImage img = Dither
 				.ranDitherImage(javafx.embed.swing.SwingFXUtils.fromFXImage(src,
-						null));
+						null),Integer.parseInt(k));
 		Image image = SwingFXUtils.toFXImage(img, null);
 		imgView.setImage(image);
 
