@@ -161,7 +161,12 @@ public class Controller {
 
 	@FXML
 	private void btOctColor() {
-
+		Image src = imgView.getImage();
+		String k=txtRanDith.getText();
+		BufferedImage img = Octree.createTree(javafx.embed.swing.SwingFXUtils.fromFXImage(src,
+						null),Integer.parseInt(k));
+		Image image = SwingFXUtils.toFXImage(img, null);
+		imgView.setImage(image);
 	}
 
 	@FXML

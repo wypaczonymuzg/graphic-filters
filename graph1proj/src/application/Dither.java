@@ -1,7 +1,7 @@
 package application;
 
 //p.aszklar@mini.pw.edu.pl
-//
+//made from indices, creating new leaves where it is necessary (leaves then become nodes, if containing child)
 //
 //w nodzie 
 //sumaR
